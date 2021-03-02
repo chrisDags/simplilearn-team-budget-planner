@@ -1,23 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
+import { Route, Router, Switch } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory'
+import Tasks from './components/Tasks';
+import Welcome from './components/Welcome';
+import Error from './components/ErrorComponent.js'
+import Task from './components/Task.jsx';
+import FinanceTasks from './components/FinanceTasks';
+import FinanceTask from './components/FinanceTask'
+import AddTask from './components/AddTask';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        
+        <Router history = {createHistory()}>       
+          <Switch>
+              <Route path="/" exact component = {Welcome}/>
+              <Route path="/tasks" component = {Tasks}/>
+              <Route path="/task" component={Task}/>
+              <Route path="/add_task" component={AddTask}/>
+              <Route path="/finance" component={FinanceTasks}/>
+              <Route path="/finance_task" component={FinanceTask}/>
+              <Route path="" component={Error}/>
+          </Switch>
+        </Router> 
     </div>
   );
 }
